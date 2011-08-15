@@ -9,7 +9,7 @@ Usage:
 
 Example:
 
-    $ ruby -I ../rack-graph/lib/ blog.rb -s Graph
+    $ ruby -I rack-graph/lib rkh.im/blog.rb -s Graph
     Sinatra::ShowExceptions
      |- Rack::MethodOverride
         |- Rack::Head
