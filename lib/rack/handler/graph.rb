@@ -231,6 +231,11 @@ module Rack
 
       class SinatraWrapper < Wrapper
         wraps 'Sinatra::Base'
+
+        def settings
+          app.settings
+        end
+
         def children
           kids = all_routes.map do |verb, routes|
             MapEntry.new verb,
@@ -241,8 +246,8 @@ module Rack
         end
 
         def options
-          return unless app.settings.static?
-          dir = app.settings.public
+          return unless settings.static?
+          dir = Sinatra::VERSION < '1.3' ? settings.public : settings.public_folder
           "public: #{dir.inspect}" if dir and ::File.exist? dir
         end
 
