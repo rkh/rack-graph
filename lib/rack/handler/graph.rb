@@ -210,11 +210,11 @@ module Rack
       end
 
       class ClassWrapper < Wrapper
-        SAFE_CLASSE = %w[Sinatra::Base]
+        SAFE_CLASS = %w[Sinatra::Base]
         wraps Class
 
         def self.new(app)
-          if SAFE_CLASSE.any? { |c| app.ancestors.any? { |a| a.to_s == c }}
+          if SAFE_CLASS.any? { |c| app.ancestors.any? { |a| a.to_s == c }}
             Wrapper.new app.new
           else
             GenericWrapper.new app
